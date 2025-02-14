@@ -1,0 +1,31 @@
+name: Run Test Cases
+
+on:
+  push:
+    branches:
+    - main
+    
+  workflow_dispatch:
+
+jobs:
+ test:
+   name: Testing iOS app
+   runs-on: macOS-latest
+   steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Force XCode 15.1
+        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
+      - name: setup-cocoapods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.14.3
+      - name: Github Credentials Store Setup
+        run: |
+          git config --global credential.helper store
+          echo "https://${{ secrets.REPO_USERNAME }}:${{ secrets.ACCESS_TOKEN }}@github.com" > ~/.git-credentials
+      - name: Run tests
+        run: xcodebuild -project OTFDesignSystem.xcodeproj -scheme OTFDesignSystemTests -destination 'platform=iOS Simulator,OS=17.2,name=iPhone 15' test
+
+
+
