@@ -24,10 +24,7 @@ final class InfoCardTests: XCTestCase {
                 OTFInfoCard(title: title,
                             description: subtitle)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: card, interfaceStyle: .light)
     }
     
     func testCardWithActions() {
@@ -39,10 +36,7 @@ final class InfoCardTests: XCTestCase {
                     .init(label: secondaryAction, style: .secondary)
                 ])
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: card)
     }
     
     func testCardWithCustomLabels() {
@@ -56,10 +50,7 @@ final class InfoCardTests: XCTestCase {
                         .init(label: secondaryAction, style: .secondary)
                     ])
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: card)
     }
     
     func testCardWithImage() {
@@ -80,9 +71,6 @@ final class InfoCardTests: XCTestCase {
                         .init(label: secondaryAction, style: .secondary)
                     ])
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: card)
     }
 }

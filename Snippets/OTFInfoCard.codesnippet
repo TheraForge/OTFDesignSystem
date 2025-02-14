@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>infocard</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>OTFInfoCard(
+    image: Image(&lt;#T##name: String##String#&gt;),
+    title: "&lt;#Title#&gt;",
+    description: "&lt;#Description#&gt;",
+    actions: [
+        OTFInfoCardAction(label: "&lt;#Primary Action#&gt;", style: .primary, action: {
+            &lt;#code#&gt;
+        }),
+        OTFInfoCardAction(label: "&lt;#Secondary Action#&gt;", style: .secondary, action: {
+            &lt;#code#&gt;
+        })
+    ]
+)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>AC4D7648-E874-4937-A177-E93560DD8444</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Creates an instance of the OTFInfoCard component</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OTFInfoCard</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

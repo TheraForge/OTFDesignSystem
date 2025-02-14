@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>surveycard</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>OTFSurveyCard(
+    title: "&lt;#Survey Title#&gt;",
+    callToAction: "&lt;#Take Survey#&gt;",
+    hasBeenAnswered: &lt;#Boolean#&gt;,
+    action: {
+        &lt;#code#&gt;
+    }
+)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0DE69D1D-751E-4199-A884-D3EFFAA9D6FB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Creates an instace of OTFSurveyCard</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OTFSurveyCard</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

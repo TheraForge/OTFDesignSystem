@@ -29,11 +29,11 @@ final class DesignStylerTests: XCTestCase {
         let button = Button("Get Started") {}.otfStyle(StyleUnderTesting())
         
         let primaryButton = UIHostingController(rootView: button.buttonStyle(.otfPrimary))
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro))
+        SnapshotHelper.test(viewController: primaryButton, interfaceStyle: .light)
         let secondaryButton = UIHostingController(rootView: button.buttonStyle(.otfSecondary))
-        assertSnapshot(matching: secondaryButton, as: .image(on: .iPhone13Pro))
+        SnapshotHelper.test(viewController: secondaryButton, interfaceStyle: .light)
         let tertiaryButton = UIHostingController(rootView: button.buttonStyle(.otfTertiary))
-        assertSnapshot(matching: tertiaryButton, as: .image(on: .iPhone13Pro))
+        SnapshotHelper.test(viewController: tertiaryButton, interfaceStyle: .light)
     }
     
     func testStyleOnInfoCard() {
@@ -47,6 +47,6 @@ final class DesignStylerTests: XCTestCase {
                                   ])
             .otfStyle(StyleUnderTesting())
         )
-        assertSnapshot(matching: card, as: .image(on: .iPhone13Pro))
+        SnapshotHelper.test(viewController: card, interfaceStyle: .light)
     }
 }

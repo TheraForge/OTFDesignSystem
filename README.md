@@ -3,19 +3,31 @@
 OTFDesignSystem is TheraForge's design system framework that provides a set of UI components and utilities for creating cohesive and visually appealing user interfaces in TheraForge applications.
 
 ## Change Log
+<details>
+<summary>Release 1.0.2</summary>
+<ul>
+    <li>Added OTFEmptyState component</li>
+    <li>Added OTFMedicationCard component</li>
+    <li>Added OTFStimuliCard component</li>
+    <li>Added OTFPillButtonStyle</li>
+    <li>Updated OTFSurveyCard layout</li>
+</ul>
+</details>
+
+<details>
 <summary>Release 1.0.1</summary>
 <ul>
-        <li>Added OTFSurveyCard component</li>
-        <li>Added OTFMediaButtonStyle</li>
+    <li>Added OTFSurveyCard component</li>
+    <li>Added OTFMediaButtonStyle</li>
 </ul>
 </details>
 
 <details>
 <summary>Release 1.0.0</summary>
 <ul>
-        <li>Initial release of OTFDesignSystem</li>
-        <li>Added OTFButtonStyles</li>
-        <li>Added OTFInfoCardButton</li>
+    <li>Initial release of OTFDesignSystem</li>
+    <li>Added OTFButtonStyles</li>
+    <li>Added OTFInfoCardButton</li>
 </ul>
 </details>
 
@@ -26,6 +38,9 @@ OTFDesignSystem is TheraForge's design system framework that provides a set of U
   * [OTFButtonStyles](#otfbuttonstyles)
   * [OTFInfoCard](#otfinfocard)
   * [OTFSurveyCard](#otfsurveycard)
+  * [OTFEmptyState](#otfemptystate)
+  * [OTFMedicationCard](#otfmedicationcard)
+  * [OTFStimuliCard](#otfstimulicard)
 * [License](#license)
 
 ## Overview <a name="overview"></a>
@@ -48,7 +63,7 @@ Run `pod install` in your terminal.
 
 ### OTFButtonStyles <a name="otfbuttonstyles"></a>
 
-This framework provides three custom button styles—Primary, Secondary, and Tertiary—that can be applied to SwiftUI's `Button`
+This framework provides four custom button styles—Primary, Secondary, Tertiary, and Pill—that can be applied to SwiftUI's `Button`.
 
 
 #### OTFPrimaryButtonStyle
@@ -68,6 +83,7 @@ struct MyView: View {
 }
 ```
 
+
 #### OTFSecondaryButtonStyle
 ![Secondary Button](Docs/secondary_button_image.png)
 
@@ -84,6 +100,7 @@ struct MyView: View {
     }
 }
 ```
+
 
 #### OTFTertiaryButtonStyle
 ![Tertiary Button](Docs/tertiary_button_image.png)
@@ -102,7 +119,24 @@ struct MyView: View {
 }
 ```
 
-There's also an additional style for media playback buttons
+
+#### OTFPillButtonStyle
+![Pill Button](Docs/pill_button_image.png)
+
+```swift
+import SwiftUI
+import OTFDesignSystem
+
+struct MyView: View {
+    var body: some View {
+        Button("Pill Button") {
+            // Handle button tap
+        }
+        .buttonStyle(.otfPill)
+    }
+}
+```
+
 
 #### OTFMediaButtonStyle
 ![Media Button](Docs/media_button_image.png)
@@ -118,7 +152,7 @@ struct MyView: View {
         } label: {
             Image(systemName: "backward.fill")
         }
-        .buttonStyle(.otfPrimary)
+        .buttonStyle(.otfMedia)
     }
 }
 ```
@@ -155,104 +189,104 @@ struct MyInfoCardView: View {
 }
 ```
 
-#### Action Set Up
-
-The OTFInfoCard can display a set of buttons to trigger an action. You can add as many buttons as you want, and they can also use the OTFButtonStyles that have been described above. Each action is represented by an instance of a `OTFInfoCardAction`, which takes a label, which will be displayed inside the button, the style, which can be either of the styles described above, and an action, which will be executed when the button is pressed.
-
-```swift
-OTFInfoCard(
-    image: Image("health-dashboard"),
-    title: "Health Insights Dashboard",
-    description: "Gain a comprehensive view of your health. Monitor vital signs, record symptoms, and track medications all in one place.",
-    actions: [
-        OTFInfoCardAction(label: "Monitor Vital Signs", style: .primary) {
-            // Handle Get Started action
-        },
-        OTFInfoCardAction(label: "Record Symptoms", style: .secondary) {
-            // Handle Learn More action
-        },
-        OTFInfoCardAction(label: "Track Medications", style: .tertiary) {
-            // Handle Learn More action
-        },
-    ]
-)
-```
-
-![Card with actions setup](Docs/card_button_setup.png)
-
-To customize the colors of the buttons, just use the `.foregroundColor(_:)` modifier on the `OTFInfoCard` component:
-
-```swift
-OTFInfoCard(
-    image: Image("health-dashboard"),
-    title: "Health Insights Dashboard",
-    description: "Gain a comprehensive view of your health. Monitor vital signs, record symptoms, and track medications all in one place.",
-    actions: [
-        OTFInfoCardAction(label: "Monitor Vital Signs", style: .primary) {
-            // Handle Get Started action
-        },
-        OTFInfoCardAction(label: "Record Symptoms", style: .secondary) {
-            // Handle Learn More action
-        },
-        OTFInfoCardAction(label: "Track Medications", style: .tertiary) {
-            // Handle Learn More action
-        },
-    ]
-).foregroundColor(.pink)
-```
-
-![Card with custom colored buttons](Docs/card_button_color.png)
-
-#### Customizable Labels
-
-You have full control over the styling of the title and description in the OTFInfoCard. You can customize their labels by passing an instance of Text for each field, allowing you to apply specific styling, just as you would with a regular SwiftUI Text view:
-
-![Info Card With Custom Labels](Docs/info_card_custom_labels.png)
-
-```swift
-OTFInfoCard(
-    title: Text("Prescription Refill")
-        .font(.largeTitle)
-        .fontWeight(.bold)
-        .foregroundColor(.blue.opacity(0.7)),
-    description: Text("Easily request prescription refills through our tele-health app for a hassle-free medication renewal process.")
-        .fontWeight(.semibold)
-        .foregroundColor(.black),
-    actions: [
-        .init(label: "Learn More", style: .tertiary),
-    ]
-)
-```
-
-For more general use, you can simplify it by passing a String, and the component will handle the styling for each field:
-
-![Info Card With Default Labels](Docs/info_card_default_labels.png)
-
-```swift
-OTFInfoCard(
-    title: "Prescription Refill",
-    description: "Easily request prescription refills through our tele-health app for a hassle-free medication renewal process.",
-    actions: [
-        .init(label: "Learn More", style: .tertiary),
-    ]
-)
-```
-
 ### OTFSurveyCard <a name="otfsurveycard"></a>
 
-The `OTFSurveyCard `component is a SwiftUI view designed for displaying survey cards within an app. It offers a customizable card layout with a title, a call-to-action button, and an indication of whether the survey has been completed.
+The `OTFSurveyCard` is a component designed for displaying survey or questionnaire items in a visually appealing manner.
 
 #### Usage
 
 ![Survey Card Example](Docs/survey_card.png)
 
 ```swift
+import SwiftUI
+import OTFDesignSystem
+
 struct ContentView: View {
     var body: some View {
         OTFSurveyCard(
-            title: "Are you feeling better after today's medications?",
-            callToAction: "Report",
+            title: "Mood Check",
+            description: "How are you feeling today?",
+            systemImage: "face.smiling.inverse",
+            callToAction: "Get Started",
             hasBeenAnswered: false
+        ) {
+            // Action to perform when tapped
+        }
+    }
+}
+```
+
+### OTFEmptyState <a name="otfemptystate"></a>
+
+The `OTFEmptyState` component is used to display a message when there is no content to show.
+
+#### Usage
+
+![Empty State Example](Docs/empty_state.png)
+
+```swift
+import SwiftUI
+import OTFDesignSystem
+
+struct ContentView: View {
+    var body: some View {
+        OTFEmptyState(
+            "No Items Found",
+            systemName: "magnifyingglass",
+            message: "It looks like there’s nothing here yet. Start adding some items to get going!",
+            action: .init(label: "Add New Item", action: {
+                // Handle add stimulus action
+            })
+        )
+    }
+}
+```
+
+### OTFMedicationCard <a name="otfmedicationcard"></a>
+
+The `OTFMedicationCard` is designed to present medication details including name, dosage, and schedule.
+
+#### Usage
+
+![Medication Card Example](Docs/medication_card.png)
+
+```swift
+import SwiftUI
+import OTFDesignSystem
+
+struct ContentView: View {
+    var body: some View {
+        OTFMedicationCard(
+            title: "Levodopa",
+            dosage: "100mg",
+            schedule: "08:00 AM",
+            isCompleted: false
+        ) { newStatus in
+            // Handle status change
+        }
+    }
+}
+```
+
+### OTFStimuliCard <a name="otfstimulicard"></a>
+
+The `OTFStimuliCard` is designed to present various stimuli options in a visually appealing manner.
+
+#### Usage
+
+![Stimuli Card Example](Docs/stimuli_card.png)
+
+```swift
+import SwiftUI
+import OTFDesignSystem
+
+struct ContentView: View {
+    var body: some View {
+        OTFStimuliCard(
+            title: "Rhythmic Cues",
+            description: "Audio beats to help regulate your walking",
+            systemImage: "waveform",
+            tintColor: .blue
         )
     }
 }

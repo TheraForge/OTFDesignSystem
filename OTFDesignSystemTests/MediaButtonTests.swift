@@ -18,10 +18,7 @@ final class MediaButtonTests: XCTestCase {
                 Image(systemName: "play.fill")
             }.buttonStyle(.otfMedia)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: button, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: button, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: button)
     }
     
     func testDisabledButton() {
@@ -32,9 +29,6 @@ final class MediaButtonTests: XCTestCase {
                 .buttonStyle(.otfMedia)
                 .disabled(true)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: button, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: button, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: button)
     }
 }

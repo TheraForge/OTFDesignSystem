@@ -18,34 +18,25 @@ final class ButtonStyleTests: XCTestCase {
                 Button("Get Started") {}
                 .buttonStyle(.otfPrimary)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: primaryButton)
     }
     
     func testSecondaryStyle() {
-        let primaryButton = UIHostingController(
+        let secondaryButton = UIHostingController(
             rootView:
                 Button("Get Started") {}
                 .buttonStyle(.otfSecondary)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: secondaryButton)
     }
     
     func testTertiaryStyle() {
-        let primaryButton = UIHostingController(
+        let tertiaryButton = UIHostingController(
             rootView:
                 Button("Get Started") {}
                 .buttonStyle(.otfTertiary)
         )
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: primaryButton, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: tertiaryButton)
     }
     
     func testDisabledStyles() {
@@ -57,9 +48,6 @@ final class ButtonStyleTests: XCTestCase {
         
         let buttons = UIHostingController(rootView: buttonStack)
         
-        let lightMode = UITraitCollection(userInterfaceStyle: .light)
-        assertSnapshot(matching: buttons, as: .image(on: .iPhone13Pro, traits: lightMode))
-        let darkMode = UITraitCollection(userInterfaceStyle: .dark)
-        assertSnapshot(matching: buttons, as: .image(on: .iPhone13Pro, traits: darkMode))
+        SnapshotHelper.test(viewController: buttons)
     }
 }

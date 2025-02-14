@@ -7,37 +7,47 @@
 
 import SwiftUI
 
-/// Represents a survey card view with a title, call to action, and optional action button.
+
+/// A customizable SwiftUI view for presenting survey-related information in a card format.
 ///
-/// The ``OTFSurveyCard`` is a SwiftUI component designed for presenting survey-related information with an optional action button. It provides a structured layout for displaying survey titles, status indicators, and call-to-action buttons, enhancing user engagement and interaction.
+/// The `OTFSurveyCard` is designed to display survey or questionnaire items in a visually appealing manner.
 ///
-/// ### Title and Call to Action
-/// The ``OTFSurveyCard`` allows customization of the title and call to action text. It provides two initializers for setting up the card:
-/// - **For Localized Strings:**
-///   ```swift
-///   public init(title: LocalizedStringKey, callToAction: LocalizedStringKey, hasBeenAnswered: Bool, action: (() -> Void)? = nil)
-///   ```
-///   This initializer accepts localized string keys for the title and call to action text. For example:
-///   ```swift
-///   OTFSurveyCard(title: "Survey Title", callToAction: "Take Survey", hasBeenAnswered: false)
-///   ```
+/// ## Features
+/// - Customizable icon using SF Symbols
+/// - Title and description text
+/// - Action button or completion status indicator
 ///
-/// - **For Text Views:**
-///   ```swift
-///   public init(title: Text, callToAction: LocalizedStringKey, hasBeenAnswered: Bool, action: (() -> Void)? = nil)
-///   ```
-///   This initializer accepts a `Text` view for the title, providing flexibility for custom styling and localization. For example:
-///   ```swift
-///   OTFSurveyCard(title: Text("Survey Title"), callToAction: "Take Survey", hasBeenAnswered: false)
-///   ```
+/// ## Usage
+/// ```swift
+/// OTFSurveyCard(
+///     title: "Mood Check",
+///     description: "How are you feeling today?",
+///     systemImage: "face.smiling.inverse",
+///     callToAction: "Get Started",
+///     hasBeenAnswered: false
+/// ) {
+///     // Action to perform when tapped
+/// }
+/// ```
+///
+/// The card adapts its appearance based on the `hasBeenAnswered` state, showing either an action button or a completion indicator.
 public struct OTFSurveyCard: View {
-    /// The title of the survey card.
-    var title: Text
-    /// The call to action text displayed on the action button.
+    /// The main headline of the card.
+    var title: LocalizedStringKey
+    
+    /// A brief explanation of the survey or task.
+    var description: LocalizedStringKey
+    
+    /// The name of the SF Symbol to use as the card's icon.
+    var icon: String
+    
+    /// Text for the action button.
     var callToAction: LocalizedStringKey
-    /// A Boolean value indicating whether the survey has been answered.
+    
+    /// Indicates whether the survey has been completed.
     var hasBeenAnswered: Bool
-    /// The action closure associated with the action button.
+    
+    /// The action to perform when the button is tapped.
     var action: (() -> ())?
     
     @Environment(\.otfdsStyle) internal var style: OTFDesignStyler?
@@ -45,79 +55,90 @@ public struct OTFSurveyCard: View {
     /// Creates an `OTFSurveyCard` with the specified parameters.
     ///
     /// - Parameters:
-    ///   - title: The title of the survey card.
-    ///   - callToAction: The call to action text displayed on the action button.
-    ///   - hasBeenAnswered: A Boolean value indicating whether the survey has been answered.
-    ///   - action: The action closure associated with the action button.
-    public init(title: LocalizedStringKey, callToAction: LocalizedStringKey, hasBeenAnswered: Bool, action: (() -> Void)? = nil) {
-        self.title = Text(title)
-        self.callToAction = callToAction
-        self.hasBeenAnswered = hasBeenAnswered
-        self.action = action
-    }
-    
-    /// Creates an `OTFSurveyCard` with the specified parameters.
-    ///
-    /// - Parameters:
-    ///   - title: The title of the survey card.
-    ///   - callToAction: The call to action text displayed on the action button.
-    ///   - hasBeenAnswered: A Boolean value indicating whether the survey has been answered.
-    ///   - action: The action closure associated with the action button.
-    public init(title: Text, callToAction: LocalizedStringKey, hasBeenAnswered: Bool, action: (() -> Void)? = nil) {
+    ///   - title: The main headline of the card.
+    ///   - description: A brief explanation of the survey or task.
+    ///   - icon: The name of the SF Symbol to use as the card's icon.
+    ///   - callToAction: Text for the action button.
+    ///   - hasBeenAnswered: Indicates whether the survey has been completed.
+    ///   - action: The action to perform when the button is tapped.
+    public init(title: LocalizedStringKey, description: LocalizedStringKey, systemImage: String, callToAction: LocalizedStringKey, hasBeenAnswered: Bool, action: (() -> Void)? = nil) {
         self.title = title
+        self.description = description
+        self.icon = systemImage
         self.callToAction = callToAction
         self.hasBeenAnswered = hasBeenAnswered
         self.action = action
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
-            title
-                .fontWeight(.medium)
-                .foregroundColor(style?.color.label)
-            
-            Divider()
-                .overlay(style?.color.separator)
-                .padding(.vertical)
-            
-            if hasBeenAnswered {
-                Label("Complete", systemImage: "checkmark.circle")
-                    .font(.body.weight(.medium))
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: icon)
+                .font(.title)
+                .foregroundColor(style?.color.primaryButton)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.medium)
+                    .foregroundColor(style?.color.label)
+                
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(style?.color.secondaryLabel)
+                
+                if hasBeenAnswered {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                            .accessibilityHidden(true)
+                        Text("Completed")
+                    }
+                    .font(.subheadline)
                     .foregroundColor(style?.color.primaryButton)
-                    .frame(maxWidth: .infinity)
-            } else {
-                Button {
-                    action?()
-                } label: {
-                    Text(callToAction)
-                        .fontWeight(.medium)
+                    .padding(.top, 4)
+                } else {
+                    Button {
+                        action?()
+                    } label: {
+                        Text(callToAction)
+                            .font(.subheadline)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 10)
+                            .foregroundColor(.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 40)
+                                    .foregroundColor(style?.color.primaryButton)
+                            )
+                    }
+                    .padding(.top, 4)
                 }
-                .buttonStyle(.otfPrimary)
-            }
+            }.padding(.bottom, 8)
         }
-        .padding()
-        .background(cardBackground)
-        .cornerRadius(12)
-    }
-    
-    private var cardBackground: Color {
-        if let background = style?.color.customBackground {
-            return background
-        } else {
-            return Color(UIColor.systemBackground)
-        }
+        .background(style?.color.secondaryCustomGroupedBackground)
+        .cornerRadius(10)
     }
 }
 
 #Preview {
     ZStack {
-        Color(UIColor.secondarySystemBackground)
+        Color(UIColor.systemGroupedBackground)
             .ignoresSafeArea(edges: .all)
         
-        OTFSurveyCard(
-            title: "Are you feeling better after today's medications?",
-            callToAction: "Report",
-            hasBeenAnswered: false
-        ).padding()
-    }
+        List {
+            Section(header: Text("Daily Checkup")) {
+                OTFSurveyCard(
+                    title: "Mood Check",
+                    description: "How are you feeling today?",
+                    systemImage: "face.smiling.inverse",
+                    callToAction: "Get Started",
+                    hasBeenAnswered: false
+                )
+                OTFSurveyCard(
+                    title: "FoG Episode Log",
+                    description: "Record any Freezing of Gait episodes you experienced today",
+                    systemImage: "figure.walk.circle.fill",
+                    callToAction: "Report",
+                    hasBeenAnswered: true
+                )
+            }
+        }
+    }.otfStyle(OTFTestStyle())
 }

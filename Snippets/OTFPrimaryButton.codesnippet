@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>primarybutton</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>Button("&lt;#label#&gt;") {
+    &lt;#action#&gt;
+}
+.buttonStyle(.otfPrimary)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A380A3C1-5B42-4BEA-8896-B0E5D0D8D89A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Creates an instance of a Button with a OTFPrimaryButton style applied to it</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OTFPrimaryButton</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
