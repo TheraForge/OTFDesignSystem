@@ -3,7 +3,7 @@
 //  OTFDesignSystem
 //
 //  Created by Tomas Martins on 12/12/23.
-//  Copyright © 2023  Hippocrates Technologies S.r.l.. All rights reserved.
+//  Copyright (c) 2024  Hippocrates Technologies Sagl. All rights reserved.
 //
 
 import SwiftUI
@@ -129,12 +129,14 @@ public struct OTFInfoCard: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             if let image {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: imageHeight)
+                    .frame(maxWidth: .infinity, maxHeight: imageHeight, alignment: .center)
+                    .clipped()
+                    .padding([.top, .horizontal])
                     .accessibilityHidden(true)
             }
             
@@ -164,13 +166,22 @@ public struct OTFInfoCard: View {
                 }
             }
             .padding()
-            .background(style?.color.customBackground)
-        }.background(style?.color.customBackground)
+        }
+        .background(backgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
 @available(iOS 14.0, *)
 extension OTFInfoCard {
+    private var backgroundColor: Color {
+        if let background = style?.color.customBackground {
+            return background
+        } else {
+            return Color(UIColor.systemBackground)
+        }
+     }
+    
     var primaryTextColor: Color {
         if let label = style?.color.label {
             return label
@@ -203,15 +214,20 @@ fileprivate extension View {
 }
 
 #Preview {
-    OTFInfoCard(
-        image: Image("your_image_name"),
-        title: "Card Title",
-        description: "Card Description. This is a sample description for the card.",
-        actions: [
-            .init(label: "Learn More", style: .primary),
-            .init(label: "Maybe Later", style: .secondary)
-        ]
-    )
-    .foregroundColor(.pink)
-    .padding()
+    ZStack {
+        Color(UIColor.secondarySystemBackground)
+            .ignoresSafeArea()
+        
+        OTFInfoCard(
+            image: Image(.infoCard),
+            title: "Card Title",
+            description: "Card Description. This is a sample description for the card.",
+            actions: [
+                .init(label: "Learn More", style: .primary),
+                .init(label: "Maybe Later", style: .secondary)
+            ]
+        )
+        .foregroundColor(.pink)
+        .padding()
+    }
 }

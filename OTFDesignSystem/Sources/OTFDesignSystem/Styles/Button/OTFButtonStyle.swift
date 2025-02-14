@@ -3,7 +3,7 @@
 //  OTFDesignSystem
 //
 //  Created by Tomas Martins on 12/12/23.
-//  Copyright © 2023  Hippocrates Technologies S.r.l.. All rights reserved.
+//  Copyright (c) 2024  Hippocrates Technologies Sagl. All rights reserved.
 //
 
 import SwiftUI
@@ -18,7 +18,7 @@ protocol OTFButtonStyle: ButtonStyle {
 }
 
 extension OTFButtonStyle {
-    var cornerRadius: CGFloat { 12.0 }
+    var cornerRadius: CGFloat { .otfActionButtonRadius }
     
     func opacity(_ isPressed: Bool) -> CGFloat {
         if isPressed {
