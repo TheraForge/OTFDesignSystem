@@ -1,8 +1,18 @@
 # OTFDesignSystem
 
-OTFDesignSystem is TheraForge's design system framework that provides a set of UI components and utilities for creating cohesive and visually appealing user interfaces in TheraForge applications.
+OTFDesignSystem is TheraForge's **design system framework** that provides a set of UI components and utilities for creating cohesive and visually appealing user interfaces in TheraForge-based applications.
+
+What is a design system? And why is the TheraForge design system useful?
+Refer to this **[article](https://www.hippocratestech.com/design-system-for-digital-health-mobile-applications/)** for more details.
 
 ## Change Log
+<details open>
+<summary>Release 2.0.0</summary>
+<ul>
+    <li>Updated dependencies for TheraForge 2.0.0 release</li>
+</ul>
+</details>
+
 <details>
 <summary>Release 1.0.2</summary>
 <ul>
