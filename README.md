@@ -7,6 +7,13 @@ Refer to this **[article](https://www.hippocratestech.com/design-system-for-digi
 
 ## Change Log
 <details open>
+<summary>Release 2.1.0</summary>
+<ul>
+    <li>Updated the OTFInfoCard background to improve contrast in dark-mode grouped layouts</li>
+</ul>
+</details>
+
+<details>
 <summary>Release 2.0.0</summary>
 <ul>
     <li>Updated dependencies for TheraForge 2.0.0 release</li>

@@ -175,12 +175,12 @@ public struct OTFInfoCard: View {
 @available(iOS 14.0, *)
 extension OTFInfoCard {
     private var backgroundColor: Color {
-        if let background = style?.color.customBackground {
+        if let background = style?.color.secondaryCustomGroupedBackground {
             return background
         } else {
-            return Color(UIColor.systemBackground)
+            return Color(UIColor.secondarySystemGroupedBackground)
         }
-     }
+    }
     
     var primaryTextColor: Color {
         if let label = style?.color.label {
