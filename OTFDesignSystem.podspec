@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'OTFDesignSystem'
-  s.version          = '2.0.0'
+  s.version          = '2.1.0'
   s.summary          = 'A Design System for Health Applications'
   s.homepage         = 'https://github.com/TheraForge/OTFDesignSystem'
   s.license          = { :type => 'BSD-4', :file => 'LICENSE.md' }

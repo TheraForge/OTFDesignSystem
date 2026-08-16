@@ -73,4 +73,17 @@ final class InfoCardTests: XCTestCase {
         )
         SnapshotHelper.test(viewController: card)
     }
+
+    func testCardBackgroundContrastsWithGroupedBackgroundInDarkMode() {
+        let card = UIHostingController(
+            rootView:
+                ZStack {
+                    Color(UIColor.systemGroupedBackground)
+                        .ignoresSafeArea()
+                    OTFInfoCard(title: title, description: subtitle)
+                        .padding(24)
+                }
+        )
+        SnapshotHelper.test(viewController: card, interfaceStyle: .dark)
+    }
 }
